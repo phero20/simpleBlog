@@ -1,8 +1,9 @@
 #  📝BlogWeb
 
-<br></br>
 A simple blog application built with Express.js, EJS, and MongoDB, following the MVC (Model-View-Controller) design pattern. It enables users to sign up, sign in, add blogs, and comment on posts while maintaining a structured and scalable architecture.
-
+<br></br>
+🔗 Live Demo: https://simpleblog-xghm.onrender.com
+<br></br>
 Features
 - User Authentication: Sign up & sign in functionality.
 - Blog Management: Users can add new blogs.
