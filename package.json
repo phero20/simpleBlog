@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cloudinary": "^2.6.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
@@ -8,7 +9,8 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.0",
     "multer": "^2.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
