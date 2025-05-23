@@ -1,5 +1,15 @@
 const Blog = require("../models/blog");
 const Comments = require("../models/comments");
+const streamifier = require("streamifier");
+const cloudinary = require("cloudinary").v2;
+
+
+require("dotenv").config();
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 function addNewGet(req, res) {
   return res.render("addBlog", {
@@ -9,15 +19,33 @@ function addNewGet(req, res) {
 
 async function addNewPost(req, res) {
   try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    const cloudinaryUpload = await new Promise((resolve, reject) => {
+      let uploadStream = cloudinary.uploader.upload_stream(
+        { folder: "blog_images" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+
+      streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
+    });
+
     let blog = await Blog.create({
       title: req.body.title,
       body: req.body.body,
-      coverImageUrl: `/uploads/${req.file.filename}`,
+      coverImageUrl: cloudinaryUpload.secure_url,
       createdBy: req.user._id,
     });
+
     blog = await Blog.findById(blog._id).populate("createdBy");
+
     return res.redirect(`/blog/${blog._id}`);
   } catch (error) {
+    console.error("Upload Error:", error);
     res.status(500).send("Server Error");
   }
 }
