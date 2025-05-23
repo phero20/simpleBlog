@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(checkForAuthCookie("token"));
-app.use(express.static(path.resolve("./public")));
+app.use(express.static("/app/public"));
 app.get("/", home);
 app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
