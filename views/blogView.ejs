@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <%- include('./partials/scripts') %>
+            <title>
+                <%= blog.title %>
+            </title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-950">
+
+    <%- include('./partials/nav') %>
+
+        <div class="max-w-5xl mx-auto mt-16 p-8">
+
+
+            <div class="flex items-center justify-center gap-4 mb-6 text-center">
+                <img class="w-12 h-12 rounded-full object-cover" src="<%= blog.createdBy.profileimageurl %>"
+                    alt="Author Image">
+                <span class="text-lg font-medium text-gray-900 dark:text-white">
+                    Created by <%= blog.createdBy.fullname %>
+                </span>
+            </div>
+
+
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white text-center">
+                <%= blog.title %>
+            </h1>
+
+
+            <div class="mt-6 flex justify-center">
+                <img class="rounded-lg w-full max-w-screen-sm h-auto object-contain" src="<%= blog.coverImageUrl %>"
+                    alt="Blog Image">
+            </div>
+
+
+            <div class="mt-24">
+                <pre class="whitespace-pre-wrap text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
+                <%= blog.body %>
+            </pre>
+            </div>
+
+            <% if(locals.user) { %>
+
+                <div class="mt-12">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Leave a Comment</h2>
+                    <form action=/blog/comment/<%=blog._id %> method="post" class="flex flex-col gap-4">
+                        <textarea rows="2" required
+                            class="w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            placeholder="Write your comment..." name="content"></textarea>
+                        <button type="submit"
+                            class="mx-24 px-6 py-2 bg-blue-700 text-white font-medium rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700">Submit</button>
+                    </form>
+                </div>
+
+                <% } %>
+
+                    <% if(locals.comments) { %>
+                        <div class="mt-12">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Comments (<%=
+                                    comments.length %>)
+                            </h2>
+
+                            <div class="flex flex-col gap-6">
+                                <% comments.forEach(comment=> { %>
+                                    <div
+                                        class="flex items-start gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-600">
+                                        <img class="w-10 h-10 rounded-full object-cover"
+                                            src="<%= comment.createdBy.profileimageurl %>" alt="User Image">
+                                        <div>
+                                            <p class="text-lg font-medium text-gray-900 dark:text-white">
+                                                <%= comment.createdBy.fullname %>
+                                            </p>
+                                            <p class="text-gray-700 dark:text-gray-400">
+                                                <%= comment.content %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+
+                        <% } %>
+</body>
+
+</html>

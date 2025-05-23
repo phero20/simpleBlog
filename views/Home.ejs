@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <%- include('./partials/scripts') %>
+            <title>Blog Home</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-950">
+    <%- include('./partials/nav') %>
+        <div class="mt-24 flex flex-wrap justify-center gap-10 p-8">
+            <div class="flex flex-wrap justify-center gap-12 items-start">
+                <% blogs.forEach(blog=> { %>
+                    <div
+                        class="max-w-xs w-full sm:w-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+                        <a href="#">
+                            <img class="rounded-t-lg w-full h-64 object-cover" src="<%= blog.coverImageUrl %>" alt="" />
+                        </a>
+                        <div class="p-5 flex-grow">
+                            <a href="#">
+                                <h5
+                                    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white w-full break-words whitespace-normal">
+                                    <%= blog.title %>
+                                </h5>
+                            </a>
+                            <a href="/blog/<%= blog._id %>"
+                                class="inline-flex items-center mt-6 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                View
+                                <svg class="rtl:rotate-180 w-4 h-4 ml-2" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+        </div>
+        </div>
+</body>
+
+</html>

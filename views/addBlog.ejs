@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <%- include('./partials/scripts') %>
+            <title>addBlog</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-950">
+
+    <%- include('./partials/nav') %>
+
+        <div class="mt-28 flex justify-center mb-6">
+            <form action="/blog/addnew" method="post" enctype="multipart/form-data"
+                class="w-full max-w-2xl px-4 sm:px-6 flex flex-col justify-center items-center">
+
+
+
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">
+                    Upload multiple files
+                </label>
+                <input
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+    file:bg-gray-950 mb-6 dark:file:bg-gray-400 file:text-white dark:file:text-black file:font-medium file:px-6 file:py-3 file:rounded-lg file:border-none file:cursor-pointer"
+                    id="multiple_files" name="coverImageUrl" type="file" required>
+
+
+                <div class="mb-6 w-full">
+                    <label for="title"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                    <textarea id="title" name="title" required
+                        class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                </div>
+
+
+                <div class="mb-6 w-full">
+                    <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
+                    <textarea rows="8" id="body" name="body" required
+                        class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                </div>
+
+
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Submit
+                </button>
+
+            </form>
+        </div>
+
+</body>
+
+</html>
